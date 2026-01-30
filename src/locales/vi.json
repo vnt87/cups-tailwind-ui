@@ -139,5 +139,17 @@
         "previous": "Trước",
         "next": "Tiếp",
         "finish": "Thêm máy in"
+    },
+    "setup": {
+        "title": "Chào mừng đến với CUPS UI",
+        "subtitle": "Kết nối với máy chủ CUPS để bắt đầu.",
+        "connectionDetails": "Thông tin kết nối",
+        "connectionDetailsDesc": "Nhập thông tin máy chủ CUPS của bạn bên dưới.",
+        "connect": "Kết nối",
+        "skipForNow": "Bỏ qua và sử dụng chế độ demo"
+    },
+    "demo": {
+        "bannerMessage": "Bạn đang sử dụng chế độ demo với dữ liệu mẫu.",
+        "configureServer": "Cấu hình máy chủ"
     }
 }

@@ -139,5 +139,17 @@
         "previous": "Previous",
         "next": "Next",
         "finish": "Add Printer"
+    },
+    "setup": {
+        "title": "Welcome to CUPS UI",
+        "subtitle": "Connect to your CUPS server to get started.",
+        "connectionDetails": "Connection Details",
+        "connectionDetailsDesc": "Enter your CUPS server information below.",
+        "connect": "Connect",
+        "skipForNow": "Skip for now and use demo mode"
+    },
+    "demo": {
+        "bannerMessage": "You are using demo mode with mock data.",
+        "configureServer": "Configure server"
     }
 }

@@ -2,7 +2,7 @@
 
 CUPS is an amazing piece of opensource software but its web interface is an abomination. As a product designer I couldn't stand it, so I attempted to create my own using React and Tailwind CSS.
 
-![Preview](public/preview.png)
+![Preview](public/screenshot-30012026.jpg)
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 

@@ -5,9 +5,9 @@ import {
     HomeIcon,
 } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
-import { Sidebar, SidebarBody, SidebarFooter, SidebarHeader, SidebarItem, SidebarLabel, SidebarSection, SidebarSpacer } from '../components/sidebar'
-import { SidebarLayout } from '../components/sidebar-layout'
-import { Navbar, NavbarSpacer } from '../components/navbar'
+import { Sidebar, SidebarBody, SidebarSection, SidebarItem, SidebarLabel } from '../components/sidebar'
+import { StackedLayout } from '../components/stacked-layout'
+import { Navbar, NavbarSection, NavbarItem, NavbarDivider, NavbarSpacer } from '../components/navbar'
 import { Outlet, useLocation } from 'react-router-dom'
 
 export function AppLayout() {
@@ -22,25 +22,42 @@ export function AppLayout() {
     ]
 
     return (
-        <SidebarLayout
+        <StackedLayout
             navbar={
                 <Navbar>
+                    {/* Logo / Brand */}
+                    <div className="flex items-center gap-2">
+                        <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600">
+                            <PrinterIcon className="size-5 text-white" />
+                        </div>
+                        <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                            {t('common.appName')}
+                        </span>
+                    </div>
+                    <NavbarDivider className="max-lg:hidden" />
+                    {/* Navigation Items */}
+                    <NavbarSection className="max-lg:hidden">
+                        {navigation.map((item) => (
+                            <NavbarItem
+                                key={item.href}
+                                href={item.href}
+                                current={location.pathname === item.href}
+                            >
+                                {item.name}
+                            </NavbarItem>
+                        ))}
+                    </NavbarSection>
                     <NavbarSpacer />
+                    {/* Right side - could add user menu, settings, etc. */}
+                    <NavbarSection>
+                        <p className="text-xs text-zinc-400 dark:text-zinc-500 max-sm:hidden">
+                            {t('common.version')}
+                        </p>
+                    </NavbarSection>
                 </Navbar>
             }
             sidebar={
                 <Sidebar>
-                    <SidebarHeader>
-                        <div className="flex items-center gap-3 px-2">
-                            <div className="flex size-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg">
-                                <PrinterIcon className="size-6 text-white" />
-                            </div>
-                            <div>
-                                <p className="text-sm font-semibold text-zinc-900 dark:text-white">{t('common.appName')}</p>
-                                <p className="text-xs text-zinc-500 dark:text-zinc-400">{t('common.appDescription')}</p>
-                            </div>
-                        </div>
-                    </SidebarHeader>
                     <SidebarBody>
                         <SidebarSection>
                             {navigation.map((item) => (
@@ -54,19 +71,11 @@ export function AppLayout() {
                                 </SidebarItem>
                             ))}
                         </SidebarSection>
-                        <SidebarSpacer />
                     </SidebarBody>
-                    <SidebarFooter>
-                        <div className="flex items-center justify-between px-2 py-2">
-                            <p className="text-xs text-zinc-400 dark:text-zinc-500">
-                                {t('common.appName')} {t('common.version')}
-                            </p>
-                        </div>
-                    </SidebarFooter>
                 </Sidebar>
             }
         >
             <Outlet />
-        </SidebarLayout>
+        </StackedLayout>
     )
 }

@@ -170,13 +170,11 @@ function SectionHeader({
     description,
     isOpen,
     onToggle,
-    icon,
 }: {
     title: string
     description?: string
     isOpen: boolean
     onToggle: () => void
-    icon?: React.ReactNode
 }) {
     return (
         <button
@@ -184,20 +182,13 @@ function SectionHeader({
             onClick={onToggle}
             className="flex w-full items-start gap-3 rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-left transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800/50 dark:hover:bg-zinc-800"
         >
-            <div className="mt-0.5 text-zinc-500 dark:text-zinc-400">
-                {icon || (isOpen ? <ChevronDownIcon className="size-5" /> : <ChevronRightIcon className="size-5" />)}
+            <div className="mt-0.5 text-zinc-400">
+                {isOpen ? <ChevronDownIcon className="size-5" /> : <ChevronRightIcon className="size-5" />}
             </div>
             <div className="flex-1">
                 <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">{title}</h3>
                 {description && (
                     <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">{description}</p>
-                )}
-            </div>
-            <div className="mt-0.5">
-                {isOpen ? (
-                    <ChevronDownIcon className="size-5 text-zinc-400" />
-                ) : (
-                    <ChevronRightIcon className="size-5 text-zinc-400" />
                 )}
             </div>
         </button>
@@ -210,13 +201,11 @@ function CollapsibleSection({
     description,
     children,
     defaultOpen = false,
-    icon,
 }: {
     title: string
     description?: string
     children: React.ReactNode
     defaultOpen?: boolean
-    icon?: React.ReactNode
 }) {
     const [isOpen, setIsOpen] = useState(defaultOpen)
 
@@ -227,7 +216,6 @@ function CollapsibleSection({
                 description={description}
                 isOpen={isOpen}
                 onToggle={() => setIsOpen(!isOpen)}
-                icon={icon}
             />
             {isOpen && (
                 <div className="rounded-lg border border-zinc-200 bg-white p-5 dark:border-zinc-700 dark:bg-zinc-900">
@@ -239,7 +227,9 @@ function CollapsibleSection({
 }
 
 // Syntax Highlighted Config Preview
-function ConfigPreview({ content }: { content: string }) {
+function ConfigPreview({ content, onCopy, copySuccess }: { content: string; onCopy: () => void; copySuccess: boolean }) {
+    const { t } = useTranslation()
+
     const highlightLine = (line: string): React.ReactNode => {
         // Comments
         if (line.trim().startsWith('#')) {
@@ -278,19 +268,27 @@ function ConfigPreview({ content }: { content: string }) {
     const lines = content.split('\n')
 
     return (
-        <div className="overflow-auto rounded-lg border border-zinc-200 bg-zinc-950 dark:border-zinc-700">
-            <pre className="p-4 font-mono text-xs leading-relaxed">
-                <code>
-                    {lines.map((line, idx) => (
-                        <div key={idx} className="flex">
-                            <span className="mr-4 inline-block w-8 select-none text-right text-zinc-600">
-                                {idx + 1}
-                            </span>
-                            <span className="text-zinc-300">{highlightLine(line)}</span>
-                        </div>
-                    ))}
-                </code>
-            </pre>
+        <div className="space-y-3">
+            <div className="overflow-auto rounded-lg border border-zinc-200 bg-zinc-950 dark:border-zinc-700">
+                <pre className="p-4 font-mono text-xs leading-relaxed">
+                    <code>
+                        {lines.map((line, idx) => (
+                            <div key={idx} className="flex">
+                                <span className="mr-4 inline-block w-8 select-none text-right text-zinc-600">
+                                    {idx + 1}
+                                </span>
+                                <span className="text-zinc-300">{highlightLine(line)}</span>
+                            </div>
+                        ))}
+                    </code>
+                </pre>
+            </div>
+            <div className="flex justify-end">
+                <Button outline onClick={onCopy}>
+                    <ClipboardDocumentIcon className="size-4" />
+                    {copySuccess ? t('cupsdEditor.copied') : t('cupsdEditor.copy')}
+                </Button>
+            </div>
         </div>
     )
 }
@@ -710,7 +708,7 @@ export function CupsdConfEditor() {
                         description={t('cupsdEditor.previewDesc')}
                         defaultOpen={true}
                     >
-                        <ConfigPreview content={configContent} />
+                        <ConfigPreview content={configContent} onCopy={handleCopy} copySuccess={copySuccess} />
                     </CollapsibleSection>
                 </div>
             </div>
@@ -726,10 +724,6 @@ export function CupsdConfEditor() {
                         <Button outline onClick={handleReset}>
                             <ArrowPathIcon className="size-4" />
                             {t('cupsdEditor.reset')}
-                        </Button>
-                        <Button outline onClick={handleCopy}>
-                            <ClipboardDocumentIcon className="size-4" />
-                            {copySuccess ? t('cupsdEditor.copied') : t('cupsdEditor.copy')}
                         </Button>
                         <Button color="blue" onClick={handleExport}>
                             <DocumentArrowDownIcon className="size-4" />

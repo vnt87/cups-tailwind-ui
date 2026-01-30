@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+/* Custom theme configuration for CUPS UI */
+@theme {
+  /* Modern color palette */
+  --color-cups-primary: #3b82f6;
+  --color-cups-secondary: #6366f1;
+  --color-cups-success: #10b981;
+  --color-cups-warning: #f59e0b;
+  --color-cups-error: #ef4444;
+
+  /* Custom fonts */
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Base layer customizations */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100;
+    font-family: var(--font-sans);
+  }
+}

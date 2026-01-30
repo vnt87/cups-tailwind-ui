@@ -8,7 +8,8 @@ import { Field, Label, Description } from '../components/fieldset'
 import { Switch, SwitchField } from '../components/switch'
 import { useTheme } from '../contexts/ThemeProvider'
 import { changeLanguage, getCurrentLanguage } from '../i18n'
-import { SunIcon, MoonIcon, ComputerDesktopIcon, ServerIcon, AdjustmentsHorizontalIcon, ShieldExclamationIcon } from '@heroicons/react/24/outline'
+import { SunIcon, MoonIcon, ComputerDesktopIcon, ServerIcon, AdjustmentsHorizontalIcon, ShieldExclamationIcon, DocumentTextIcon } from '@heroicons/react/24/outline'
+import { CupsdConfEditor } from '../components/CupsdConfEditor'
 import clsx from 'clsx'
 
 export function SettingsPage() {
@@ -20,6 +21,7 @@ export function SettingsPage() {
         { name: t('settings.server'), icon: ServerIcon },
         { name: t('settings.preferences'), icon: AdjustmentsHorizontalIcon },
         { name: t('settings.system'), icon: ShieldExclamationIcon },
+        { name: t('settings.cupsdEditor'), icon: DocumentTextIcon },
     ]
 
     return (
@@ -236,6 +238,11 @@ export function SettingsPage() {
                                 </div>
                             </div>
                         </section>
+                    </TabPanel>
+
+                    {/* cupsd.conf Editor Tab */}
+                    <TabPanel className="focus:outline-none">
+                        <CupsdConfEditor />
                     </TabPanel>
                 </TabPanels>
             </TabGroup>

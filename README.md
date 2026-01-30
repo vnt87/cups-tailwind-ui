@@ -1,6 +1,6 @@
 # CUPS Modern Web UI
 
-CUPS is an amazing piece of opensource software but its web interface is an abomination. As a product designer I couldn't stand it, so I attempted to create my own using React and Tailwind CSS.
+CUPS is an amazing piece of opensource software but its default web interface is a bloody abomination. As a product designer I couldn't stand it, so I attempted to create my own using React and Tailwind CSS.
 
 ![Light Screenshot](public/screenshot-light.jpg)
 

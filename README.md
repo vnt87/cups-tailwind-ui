@@ -1,6 +1,8 @@
 # CUPS Modern Web UI
 
-A modern, standalone web interface for managing CUPS printers and print jobs. Built with React, TypeScript, Tailwind CSS v4, and Tailwind Plus Catalyst components.
+CUPS is an amazing piece of opensource software but its web interface is an abomination. As a product designer I couldn't stand it, so I attempted to create my own using React and Tailwind CSS.
+
+![Preview](public/preview.png)
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 

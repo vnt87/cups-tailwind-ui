@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next'
 import { Sidebar, SidebarBody, SidebarSection, SidebarItem, SidebarLabel } from '../components/sidebar'
 import { StackedLayout } from '../components/stacked-layout'
 import { Navbar, NavbarSection, NavbarItem, NavbarDivider, NavbarSpacer } from '../components/navbar'
+import { SubtleLanguageSwitcher } from '../components/SubtleLanguageSwitcher'
+import { SubtleThemeSwitcher } from '../components/SubtleThemeSwitcher'
 import { Outlet, useLocation } from 'react-router-dom'
 
 export function AppLayout() {
@@ -48,9 +50,11 @@ export function AppLayout() {
                         ))}
                     </NavbarSection>
                     <NavbarSpacer />
-                    {/* Right side - could add user menu, settings, etc. */}
-                    <NavbarSection>
-                        <p className="text-xs text-zinc-400 dark:text-zinc-500 max-sm:hidden">
+                    {/* Right side - switchers and version */}
+                    <NavbarSection className="flex items-center gap-1">
+                        <SubtleLanguageSwitcher />
+                        <SubtleThemeSwitcher />
+                        <p className="text-xs text-zinc-400 dark:text-zinc-500 max-sm:hidden ml-2">
                             {t('common.version')}
                         </p>
                     </NavbarSection>

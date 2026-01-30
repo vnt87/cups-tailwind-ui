@@ -87,6 +87,9 @@
     "settings": {
         "title": "Cài đặt",
         "subtitle": "Cấu hình kết nối máy chủ CUPS và tùy chọn",
+        "server": "Máy chủ",
+        "preferences": "Tùy chọn",
+        "system": "Hệ thống",
         "serverConnection": "Kết nối máy chủ",
         "serverConnectionDesc": "Cấu hình máy chủ CUPS bạn muốn quản lý.",
         "serverAddress": "Địa chỉ máy chủ",
@@ -96,7 +99,7 @@
         "username": "Tên đăng nhập (Tùy chọn)",
         "password": "Mật khẩu (Tùy chọn)",
         "testConnection": "Kiểm tra kết nối",
-        "preferences": "Tùy chọn",
+        "preferencesSection": "Tùy chọn",
         "preferencesDesc": "Tùy chỉnh hành vi giao diện và thông báo.",
         "refreshInterval": "Khoảng thời gian tự động làm mới",
         "refreshIntervalDesc": "Tần suất làm mới dữ liệu (tính bằng giây). Đặt 0 để tắt.",

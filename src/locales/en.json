@@ -87,6 +87,9 @@
     "settings": {
         "title": "Settings",
         "subtitle": "Configure your CUPS server connection and preferences",
+        "server": "Server",
+        "preferences": "Preferences",
+        "system": "System",
         "serverConnection": "Server Connection",
         "serverConnectionDesc": "Configure the CUPS server you want to manage.",
         "serverAddress": "Server Address",
@@ -96,7 +99,7 @@
         "username": "Username (Optional)",
         "password": "Password (Optional)",
         "testConnection": "Test Connection",
-        "preferences": "Preferences",
+        "preferencesSection": "Preferences",
         "preferencesDesc": "Customize the UI behavior and notifications.",
         "refreshInterval": "Auto-refresh interval",
         "refreshIntervalDesc": "How often to refresh data (in seconds). Set to 0 to disable.",

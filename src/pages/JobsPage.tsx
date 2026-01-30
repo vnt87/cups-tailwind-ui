@@ -1,10 +1,10 @@
-import { DocumentIcon, FunnelIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { DocumentIcon, FunnelIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import { Heading } from '../components/heading'
 import { Text } from '../components/text'
 import { Badge } from '../components/badge'
 import { Button } from '../components/button'
-import { Input } from '../components/input'
+import { Input, InputGroup } from '../components/input'
 import { Select } from '../components/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/table'
 import { Dropdown, DropdownButton, DropdownItem, DropdownMenu } from '../components/dropdown'
@@ -98,7 +98,8 @@ export function JobsPage() {
                         <FunnelIcon data-slot="icon" />
                         {t('common.filter')}
                     </Button>
-                    <Button color="red" outline>
+                    <Button color="red">
+                        <XMarkIcon data-slot="icon" />
                         {t('jobs.cancelAll')}
                     </Button>
                 </div>
@@ -106,13 +107,15 @@ export function JobsPage() {
 
             {/* Filters */}
             <div className="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900 sm:flex-row sm:items-center">
-                <div className="relative flex-1">
-                    <MagnifyingGlassIcon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-zinc-400" />
-                    <Input
-                        type="search"
-                        placeholder={t('jobs.searchPlaceholder')}
-                        className="pl-9"
-                    />
+                <div className="flex-1">
+                    <InputGroup>
+                        <MagnifyingGlassIcon data-slot="icon" />
+                        <Input
+                            type="search"
+                            placeholder={t('jobs.searchPlaceholder')}
+                            aria-label={t('jobs.searchPlaceholder')}
+                        />
+                    </InputGroup>
                 </div>
                 <div className="flex gap-3">
                     <Select name="printer" defaultValue="">
@@ -134,7 +137,7 @@ export function JobsPage() {
 
             {/* Jobs Table */}
             <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
-                <Table className="[--gutter:--spacing(6)]">
+                <Table bleed className="mx-0 [--gutter:--spacing(6)]">
                     <TableHead>
                         <TableRow>
                             <TableHeader>{t('jobs.jobId')}</TableHeader>

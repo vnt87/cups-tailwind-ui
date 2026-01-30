@@ -81,7 +81,7 @@ export function DashboardPage() {
                 <div className="border-b border-zinc-200 px-6 py-4 dark:border-zinc-800">
                     <Heading level={2}>{t('dashboard.recentJobs')}</Heading>
                 </div>
-                <Table className="[--gutter:--spacing(6)]">
+                <Table bleed className="mx-0 [--gutter:--spacing(6)]">
                     <TableHead>
                         <TableRow>
                             <TableHeader>{t('jobs.document')}</TableHeader>

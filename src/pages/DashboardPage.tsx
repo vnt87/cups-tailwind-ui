@@ -20,12 +20,31 @@ export function DashboardPage() {
     const { t } = useTranslation()
     const [isAddPrinterOpen, setIsAddPrinterOpen] = useState(false)
 
+    const colorStyles = {
+        blue: {
+            bg: 'bg-blue-100 dark:bg-blue-500/20',
+            text: 'text-blue-600 dark:text-blue-400',
+        },
+        indigo: {
+            bg: 'bg-indigo-100 dark:bg-indigo-500/20',
+            text: 'text-indigo-600 dark:text-indigo-400',
+        },
+        green: {
+            bg: 'bg-green-100 dark:bg-green-500/20',
+            text: 'text-green-600 dark:text-green-400',
+        },
+        amber: {
+            bg: 'bg-amber-100 dark:bg-amber-500/20',
+            text: 'text-amber-600 dark:text-amber-400',
+        },
+    } as const
+
     const stats = [
         { name: t('dashboard.totalPrinters'), value: '4', icon: PrinterIcon, color: 'blue' },
         { name: t('dashboard.activeJobs'), value: '2', icon: QueueListIcon, color: 'indigo' },
         { name: t('dashboard.completedToday'), value: '12', icon: CheckCircleIcon, color: 'green' },
         { name: t('dashboard.issues'), value: '1', icon: ExclamationTriangleIcon, color: 'amber' },
-    ]
+    ] as const
 
     function getStatusBadge(status: string) {
         switch (status) {
@@ -61,11 +80,11 @@ export function DashboardPage() {
                 {stats.map((stat) => (
                     <div
                         key={stat.name}
-                        className="relative overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
+                        className="relative overflow-hidden rounded-xl border border-zinc-950/5 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-zinc-900"
                     >
                         <div className="flex items-center gap-4">
-                            <div className={`flex size-12 items-center justify-center rounded-lg bg-${stat.color}-100 dark:bg-${stat.color}-900/30`}>
-                                <stat.icon className={`size-6 text-${stat.color}-600 dark:text-${stat.color}-400`} />
+                            <div className={`flex size-12 items-center justify-center rounded-lg ${colorStyles[stat.color].bg}`}>
+                                <stat.icon className={`size-6 ${colorStyles[stat.color].text}`} />
                             </div>
                             <div>
                                 <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">{stat.name}</p>

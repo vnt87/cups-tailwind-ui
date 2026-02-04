@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { PrinterIcon, PlusIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/outline'
-import { CheckCircleIcon, ExclamationCircleIcon, PauseCircleIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import { Heading } from '../components/heading'
 import { Text } from '../components/text'
@@ -53,33 +52,20 @@ const printers = [
     },
 ]
 
-function getStatusIcon(status: string) {
-    switch (status) {
-        case 'idle':
-            return <CheckCircleIcon className="size-5 text-green-500" />
-        case 'printing':
-            return <PauseCircleIcon className="size-5 text-blue-500" />
-        case 'error':
-            return <ExclamationCircleIcon className="size-5 text-red-500" />
-        default:
-            return null
-    }
-}
-
 export function PrintersPage() {
     const { t } = useTranslation()
     const [isAddPrinterOpen, setIsAddPrinterOpen] = useState(false)
 
-    function getStatusText(status: string) {
+    function getStatusBadge(status: string) {
         switch (status) {
             case 'idle':
-                return t('printers.statusIdle')
+                return <Badge color="green">{t('printers.statusIdle')}</Badge>
             case 'printing':
-                return t('printers.statusPrinting')
+                return <Badge color="blue">{t('printers.statusPrinting')}</Badge>
             case 'error':
-                return t('printers.statusError')
+                return <Badge color="red">{t('printers.statusError')}</Badge>
             default:
-                return status
+                return <Badge>{status}</Badge>
         }
     }
 
@@ -136,9 +122,8 @@ export function PrintersPage() {
                         <div className="mt-6 grid grid-cols-4 gap-4 border-t border-zinc-200 pt-4 dark:border-zinc-800">
                             <div>
                                 <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400">{t('printers.status')}</p>
-                                <div className="mt-1 flex items-center gap-1.5">
-                                    {getStatusIcon(printer.status)}
-                                    <span className="text-sm font-medium text-zinc-900 dark:text-white">{getStatusText(printer.status)}</span>
+                                <div className="mt-1">
+                                    {getStatusBadge(printer.status)}
                                 </div>
                             </div>
                             <div>

@@ -3,6 +3,9 @@ import {
     QueueListIcon,
     Cog6ToothIcon,
     HomeIcon,
+    Square2StackIcon,
+    QuestionMarkCircleIcon,
+    DocumentTextIcon,
 } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import { Sidebar, SidebarBody, SidebarSection, SidebarItem, SidebarLabel } from '../components/sidebar'
@@ -20,8 +23,11 @@ export function AppLayout() {
     const navigation = [
         { name: t('nav.dashboard'), href: '/', icon: HomeIcon },
         { name: t('nav.printers'), href: '/printers', icon: PrinterIcon },
+        { name: 'Classes', href: '/classes', icon: Square2StackIcon },
         { name: t('nav.jobs'), href: '/jobs', icon: QueueListIcon },
+        { name: 'Server Config', href: '/cupsd-conf', icon: DocumentTextIcon },
         { name: t('nav.settings'), href: '/settings', icon: Cog6ToothIcon },
+        { name: 'Help', href: '/help', icon: QuestionMarkCircleIcon },
     ]
 
     return (
